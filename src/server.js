@@ -2,27 +2,21 @@
 
 const express = require('express');
 const app = express();
-const errorHandler404 = require('./error-handlers/404.js');
-const errorHandler500 = require('./error-handlers/500.js');
-const logger = require('./middleware/logger.js');
-const validator = require('./middleware/validator.js');
 
+const error404 = require('./error-handlers/404.js');
+const error500 = require('./error-handlers/500.js');
+const logger = require('./middleware/logger.js');
+
+const foodRouter = require('./routes/food.js');
+const clothesRouter = require('./routes/clothes.js');
 
 app.use(express.json());
+app.use(logger);
+app.use(foodRouter);
+app.use(clothesRouter);
 
-app.get('/person', logger, validator, displayPersonName);
-
-
-app.use('*', errorHandler404);
-app.use(errorHandler500);
-
-function displayPersonName(request, response, next) {
-  const person = {
-    name: request.query.name,
-  };
-
-  response.json(person);
-}
+app.use('*', error404);
+app.use(error500);
 
 module.exports = {
   app: app,
