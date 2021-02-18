@@ -16,7 +16,7 @@ The app is deployed on Heroku at the following link:
 
 Work was accomplished on the `dev` branch. The pull request to merge the code into the `main` branch is here:
 
-- [Pull Request](https://github.com/William-Moreno/basic-express-server/pull/3)
+- [Pull Request](https://github.com/William-Moreno/basic-api-server/pull/1)
 
 Working features implemented:
 - Express server properly structured
