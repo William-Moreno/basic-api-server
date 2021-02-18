@@ -34,8 +34,13 @@ class ClothesInterface {
     }
   }
 
-  delete() {
-
+  delete(id) {
+    for(let i = 0 ; i < this.db.length ; i++) {
+      if (this.db[i].id === id) {
+        this.db[i].data = null;
+        return this.db[i];
+      }
+    }
   }
 }
 

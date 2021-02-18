@@ -39,7 +39,9 @@ function updateClothes(request, response, next) {
 }
 
 function removeClothes(request, response, next) {
-
+  const id = parseInt(request.params.id);
+  let resObject = clothes.delete(id);
+  response.json(resObject);
 }
 
 module.exports = router;

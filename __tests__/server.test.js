@@ -80,7 +80,7 @@ describe('Server testing', () => {
 
     expect(response.status).toEqual(200);
     expect(response.body.id).toEqual(1);
-    expect(response.body.data.type).toEqual('Anytime');
+    expect(response.body.data).toEqual({name: 'Pizza',type: 'Anytime'});
   });
 
   it('Should update specified record by request parameter on PUT /clothes', async () => {
@@ -91,7 +91,23 @@ describe('Server testing', () => {
 
     expect(response.status).toEqual(200);
     expect(response.body.id).toEqual(1);
-    expect(response.body.data.name).toEqual('T-Shirt');
+    expect(response.body.data).toEqual({name: 'T-Shirt',color: 'White'});
+  });
+
+  it('Should destroy specified record by request parameter on DELETE /food', async () => {
+    const response = await request.delete('/food/1');
+
+    expect(response.status).toEqual(200);
+    expect(response.body.id).toEqual(1);
+    expect(response.body.data).toEqual(null);
+  });
+
+  it('Should destroy specified record by request parameter on DELETE /clothes', async () => {
+    const response = await request.delete('/clothes/1');
+
+    expect(response.status).toEqual(200);
+    expect(response.body.id).toEqual(1);
+    expect(response.body.data).toEqual(null);
   });
 
 });
